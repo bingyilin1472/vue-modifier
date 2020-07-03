@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue-Modifier</title>
+    <!-- development version, includes helpful console warnings
+        從https://vuejs.org/v2/guide/ ，vue documentation取得
+        development version，上線要用production ver才會輕巧且不會有console warnings
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11" type="text/javascript"></script>
+</head>
+<body>
+    <!-- Modifier用意，告知How we listen and react toevents
+         有點像是比較詳細的event定義與反應，譬如click.alt就表示這個點擊事件需要搭配alt-heldDown(key modifier)
+      -->
+    <div id="app">
+        <h2>{{ title }}</h2>
+        <!-- Modifiers mean how we listen to this event now(現在這邊是指click event)
+             下面這例子必須shift held down情況下，點擊才會作用
+             下面二者皆屬於key modifiers
+          -->
+        <!--  針對鍵盤的叫做key modifier
+              像是ctrl、shift又叫做system key modifier
+         -->
+        <button @click.alt="logMessage">alt-click me</button>
+        <button @click.shift="logMessage">shift-click me</button>
+
+        <!-- default behavior是會take user to a different page依據href attribute
+             像是a tag是存在著default action of that event(這邊是針對click這個動作
+             prevent這個modifier可以阻止default action
+             modifier除了對event做描述也可以限制event產生的action
+        -->
+        <!-- 針對event叫做event modifier       -->
+        <a href="http://www.google.com" @click.prevent="logMessage">google</a>
+        <!-- pure event modifiers    -->
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
